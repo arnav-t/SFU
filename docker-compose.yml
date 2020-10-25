@@ -1,0 +1,16 @@
+services:
+    app:
+        container_name: app
+        restart: always
+        build: .
+        ports: 
+            - '8080:8080'
+        links:
+            - kms
+        depends_on:
+            - kms
+    kms:
+        container_name: kms
+        image: kurento/kurento-media-server
+        ports:
+            - '8888'
